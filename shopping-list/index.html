@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 12px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+</head>
+<body>
+	<h1>My shopping list</h1>
+
+    <form>
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item">
+      <button>Add item</button>
+    </form>
+
+    <ul>
+    </ul>
+	<script>
+		// Select elements
+		const	ul = document.querySelector("ul");
+		const	input = document.querySelector("input");
+		const	btn = document.querySelector("button");
+		const	handleClick = (e) => {
+			e.preventDefault();
+
+			const	input = document.querySelector("input");
+			const	inputValue = input.value;
+			const	li = document.createElement("li");
+			const	span = document.createElement("span");
+			const	delBtn = document.createElement("button");
+			const	deleteItem = (e) => {
+				e.target.parentNode.remove();
+			}
+
+			input.value = "";
+			li.appendChild(span);
+			li.appendChild(delBtn);
+			span.textContent = inputValue;
+			delBtn.textContent = "Delete";
+			ul.appendChild(li);
+			delBtn.addEventListener("click", deleteItem);
+			console.log(inputValue);
+			input.focus();
+		}
+		btn.addEventListener("click", handleClick);
+	</script>
+</body>
+</html>
